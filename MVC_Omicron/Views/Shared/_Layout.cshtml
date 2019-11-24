@@ -1,0 +1,72 @@
+﻿@using MVC_Omicron.Views.Shared
+@using System.Threading;
+@using System.Globalization;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img class="log" src="~/css/logo.png">
+                @Html.ActionLink(SiteResource.RegisterLink, "RegistrationList", "Registration", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(SiteResource.StudentLink, "StudentList", "Student", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="lang">
+                    @{
+                        CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
+
+                        <a href="/Student/ChangeCurrentCulture/0">English</a>
+
+                        <a href="/Student/ChangeCurrentCulture/1">العربية</a>
+
+
+                    }
+                </div>
+
+
+                @*@Html.ActionLink(
+        "Arabic",
+        ViewContext.RouteData.Values["action"].ToString(),
+        new { language = "ar" })
+
+        @Html.ActionLink(
+           "English",
+           ViewContext.RouteData.Values["action"].ToString(),
+           new { language = "en" })*@
+
+
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+        <footer></footer>
+    </div>
+
+
+</body>
+</html>

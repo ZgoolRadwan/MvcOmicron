@@ -1,0 +1,110 @@
+﻿@*@model PagedList.IPagedList<MVC_Omicron.Models.Studentlist>*@
+
+@model  IEnumerable<MVC_Omicron.Models.Studentlist>
+@using PagedList.Mvc
+@using MVC_Omicron.Views.Shared
+
+@{
+    ViewBag.Title = "RegistrationList";
+    //WebGrid grid = new WebGrid(Model);
+
+    
+}
+
+<div class="search">
+
+    @using (Html.BeginForm())
+    {
+
+        <p>
+            @SiteResource.searchBy @Html.TextBox("searchString", "", new { @class = "dropdownlist" })
+            <input id="search" type="submit" value=@SiteResource.search class="btn" />
+            <a href='@Url.Action("add_new_student", "Student", new { id = 0, name = 0 })' class="btn">@SiteResource.AddStudent</a>
+        </p>
+    }
+
+</div>
+<div class="title">
+    <h3>@SiteResource.title1</h3>
+</div>
+
+
+
+<div class="col-lg-12">
+
+    @*<div class="panel panel-default">*@
+
+    @*<div class="panel-body">*@
+
+
+
+    <div>
+
+        <div>
+
+
+            @{
+
+                WebGrid stu = new WebGrid(Model, canPage: true, rowsPerPage: 6, ajaxUpdateContainerId: "gridContent");
+
+            }
+
+            @stu.GetHtml(tableStyle: "table-responsive", mode: WebGridPagerModes.All, nextText: SiteResource.Next, previousText: SiteResource.Previous, columns: stu.Columns(
+
+
+                stu.Column("StudentName", SiteResource.StudentName),
+                stu.Column("StudentEmail", SiteResource.StudentEmail),
+                stu.Column("StudentMobile", SiteResource.StudentMobile),
+                stu.Column("StudentAddress", SiteResource.StudentAddress),
+                stu.Column( "Birthday", SiteResource.Birthday, format: (item) => string.Format("{0:dd-MMM-yyyy}",item.Birthday)),
+                stu.Column("Age", SiteResource.Age),
+                stu.Column(style: "colDelete", header: " ", format: (model) =>
+
+                {
+
+                    //if (model.EditPermission == "YES" && model.IndividualProcessStatus == 2)
+
+                    //{
+
+                    return Html.ActionLink(SiteResource.Edit, "EditStudent", "Student", new { id = model.StudentID, FromPage = 1 }, new { @class = "btn" });
+
+                    //}
+
+                    //    else { return null; }
+
+                }
+
+                             ),
+    stu.Column(style: "colDelete", header: " ", format: (model) =>
+
+    {
+
+        //if (model.EditPermission == "YES" && model.IndividualProcessStatus == 2)
+
+        //{
+
+        return Html.ActionLink(SiteResource.Delete, "DeleteStudent", new { id = model.StudentID }, new { onclick = "return confirm('Are you sure you wish to delete this Student ?');", @class = "btn" });
+
+        //}
+
+        //    else { return null; }
+
+    }
+
+                             )
+
+
+                        @*stu.Column("Action", format: @<text>
+
+                                    <a href="~/Student/StudentList/2" class="href" accesskey="StudentID">Edit</a>
+                                    <button class="href">Delete</button>
+
+                            </text>)*@
+
+                        ))
+
+        </div>
+    </div>
+    @*</div>*@
+    @*</div>*@
+</div>

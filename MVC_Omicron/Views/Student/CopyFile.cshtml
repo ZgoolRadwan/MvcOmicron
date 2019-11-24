@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVC_Omicron.Models.Studentlist>
+
+@{
+    ViewBag.Title = "StudentList";
+}
+
+<h2>StudentList</h2>
+
+
+@{
+
+    WebGrid stu = new WebGrid(Model);
+
+}
+
+@stu.GetHtml(tableStyle: "table", mode: WebGridPagerModes.All, nextText: "Next", previousText: "Previous", columns: stu.Columns(
+
+
+    stu.Column("StudentName", "StudentName"),
+    stu.Column("StudentEmail", "Email"),
+    stu.Column("StudentMobile","Mobile"),
+    stu.Column("StudentAddress","Address"),
+    stu.Column("Birthday", "Birthday"),
+    stu.Column("Age", "Age"),
+    stu.Column("Action", format: @<text>
+
+        <a href="~/Student/StudentList/2" class="href" accesskey="StudentID">Edit</a>
+        <button class="href">Delete</button>
+
+    </text>)
+
+                            ))
+

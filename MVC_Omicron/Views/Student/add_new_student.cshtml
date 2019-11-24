@@ -1,0 +1,72 @@
+﻿@model MVC_Omicron.Models.Studentlist
+@using MVC_Omicron.Views.Shared
+<div class="form">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+        <h4>@SiteResource.Addnewstudent</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.LabelFor(model => model.StudentName, SiteResource.StudentName)
+
+        @Html.EditorFor(model => model.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "text-danger" })
+
+
+
+        <br />
+        <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+        @Html.LabelFor(model => model.StudentEmail, SiteResource.StudentEmail)
+
+        @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-danger" })
+        <br />
+        @Html.LabelFor(model => model.StudentMobile, SiteResource.StudentMobile)
+
+        @Html.EditorFor(model => model.StudentMobile, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.StudentMobile, "", new { @class = "text-danger" })
+        <br />
+
+
+        @Html.LabelFor(model => model.StudentAddress, SiteResource.StudentAddress)
+        <br />
+        @Html.EditorFor(model => model.StudentAddress, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.StudentAddress, "", new { @class = "text-danger" })
+
+        @Html.LabelFor(model => model.Birthday, SiteResource.Birthday)
+
+
+        @Html.EditorFor(model => model.Birthday, new { htmlAttributes = new { @class = "form-control", id = "birthday" } })
+        <script type="text/javascript" lang="javascript">
+            $(function () {
+                $("#birthday").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "mm/dd/yy",
+                    yearRange: '1950:2018'
+                });
+            });
+        </script>
+
+
+        @Html.ValidationMessageFor(model => model.Birthday, "", new { @class = "text-danger" })
+
+        <br />
+        <input type="submit" value="@SiteResource.save" class="btn" />
+        <input type="reset" class="btn" name="clear" value="@SiteResource.clear" id="cleartext" />
+        <a href='@Url.Action("StudentList", "Student")' class="btn">@SiteResource.cancel</a>
+        <script>
+            $("#clearText").click(function () {
+                $(this).closest('form').find("input[type=text], textarea").val("");
+            });
+        </script>
+    }
+
+</div>
+

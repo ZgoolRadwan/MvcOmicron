@@ -1,0 +1,10 @@
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\obj\Debug\BAL.csprojAssemblyReference.cache
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\obj\Debug\BAL.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\bin\Debug\BAL.dll
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\bin\Debug\BAL.pdb
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\bin\Debug\DAL.dll
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\bin\Debug\DAL.pdb
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\bin\Debug\DAL.dll.config
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\obj\Debug\BAL.csproj.CopyComplete
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\obj\Debug\BAL.dll
+C:\Users\User\Desktop\Omicron TASKS\MVC_Omicron\BAL\obj\Debug\BAL.pdb

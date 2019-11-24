@@ -1,0 +1,315 @@
+﻿
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    /*background-color: #5589d7 !important;*/
+    background-image: url(just.jpg) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+body input {
+    
+    color: black;
+}
+
+.href {
+    color: #ff2403;
+    font-size:16px;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-right: solid 1px;
+    margin-right: 5px;
+}
+
+edit-user display-mode {
+    color: #ff2403;
+    font-size: 16px;
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    border-right: solid 1px;
+    margin-right: 5px;
+}
+.menu a {
+    text-decoration: none;
+    background: #03a9f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-right: 10px;
+}
+.btn {
+    text-decoration: none;
+    background: #03a9f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 7px 7px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin:2px;
+}
+
+.cancel_btn {
+    text-decoration: none;
+    background: red;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+
+.sort {
+
+background-image:url(sort.png);
+width:30px;
+height:30px;
+}
+
+
+.menu {
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 10px;
+    margin: 4px;
+    padding-bottom: 3%;
+    padding-top: 1%;
+    position: absolute;
+    right: 10px;
+    text-align: right;
+    z-index: 0;
+}
+.search {
+   padding-bottom:5px;
+    left: 20px;  
+    margin-top:32px;
+    text-align:right;
+  
+   
+}
+
+.title {
+
+position:absolute;
+top:70px;
+left:40px;
+
+}
+
+@media only screen and (max-width :600px) {
+    .navbar {
+        overflow: visible;
+    }
+
+}
+
+
+.table {
+    margin: 40px;
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding:0;
+    padding-left: 20px;
+    width: 70%;
+    height: 70%;
+    border-radius: 10px;
+  
+    
+}
+
+
+
+.form {
+    margin: 30px;
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding-bottom: 5px;
+    padding-left: 20px;
+    width: 60%;
+    height:auto;
+    border-radius: 10px;
+}
+
+
+.table a {
+    color: white;
+}
+.register {
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    border-radius: 10px;
+}
+    .register h3 {
+        color:white;
+        text-align:center;
+    }
+
+    .register .inputBox .textbox {
+        outline: none;
+        border:none;
+        border-bottom:1px solid white;
+        width:90%;
+        padding:7px;
+        margin:7px;
+        background-color:transparent;
+        color:white;
+    }
+    .register .inputBox label {
+        color:white;
+    }
+  .dropdownlist {
+      color:black;
+        width: 70%;
+        padding: 4px;
+        margin: 7px;
+        margin-top:5px;
+        background-color: #edf2f7;
+        font-size: 16px;
+        border-radius:7px;
+    }
+.f_msg {
+        color :red;
+        font-weight:bold;
+}
+.s_msg {
+    color: forestgreen;
+    font-weight: bold;
+}
+.label {
+color:white;
+}
+.search_box {
+    padding:4px;
+    width:200px;
+    height:20px;
+    border-radius:8px;
+
+
+}
+td a {
+color :red;
+}
+
+.control_btn {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white !important;
+    font-size:16px;
+}
+
+
+
+
+.error_label {
+    color: red;
+    font-weight: bold;
+}
+.hiddencol {
+    display:none;
+}
+.btn_new_register {
+    text-decoration: none;
+    background: #03a9f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+    margin: 5px;
+    position:absolute;
+    left:10px;
+    top:0%;
+}
+
+.register .inputBox .textbox_calendar {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid white;
+    width: 50%;
+    padding: 7px;
+    margin: 7px;
+    background-color: transparent;
+    color: white;
+}
+
+.calendar {
+    display:inline-block
+}
+
+.menu .logo {
+    background: url(logo.png) no-repeat 50% 50%;
+    background-size: contain;
+    width: 180px;
+    height: 60px;
+    float: left;
+  position:absolute;
+  left:2px;
+  top:0;
+    margin-left: 20px;
+    z-index:1;
+
+}
+.menu h4 {
+    color:white;
+    position:absolute;
+    top:2px;
+    left:180px;
+   display:inline;
+}
+
+.menu .logo h3 {
+    
+    margin-left:100%;
+    left:40px;
+    color:white;
+    
+}
+
+.paging {
+bottom:5px;
+left:5px;
+}
+
+.lang a {
+    text-align: right;
+    text-decoration: none;
+    background: #03a9f4;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+.lang  {
+    text-align: right;
+    position:absolute;
+    right:1px;
+    
+}

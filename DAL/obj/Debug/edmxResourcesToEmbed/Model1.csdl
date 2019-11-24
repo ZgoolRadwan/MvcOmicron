@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OmicronUniversityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="coursefee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="CourseFees" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__coursefee__Cours__33D4B598" FromRole="coursefees" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseNumber" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorID" Type="Int32" />
+    <NavigationProperty Name="coursefees" Relationship="Self.FK__coursefee__Cours__33D4B598" FromRole="Courses" ToRole="coursefees" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK__Courses__Instruc__21B6055D" FromRole="Courses" ToRole="Instructors" />
+    <NavigationProperty Name="coursetimes" Relationship="Self.FK__coursetim__Cours__2F10007B" FromRole="Courses" ToRole="coursetime" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK__Enrollmen__Cours__0DAF0CB0" FromRole="Courses" ToRole="Enrollments" />
+  </EntityType>
+  <EntityType Name="coursetime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="CourseTime1" Type="Time" Precision="7" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__coursetim__Cours__2F10007B" FromRole="coursetime" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Enrollment">
+    <Key>
+      <PropertyRef Name="EnrollmentID" />
+    </Key>
+    <Property Name="EnrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="CourseID" Type="Int32" />
+    <Property Name="StudentFees" Type="Double" />
+    <Property Name="RegisterDate" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cours" Relationship="Self.FK__Enrollmen__Cours__0DAF0CB0" FromRole="Enrollments" ToRole="Courses" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Enrollmen__Stude__0CBAE877" FromRole="Enrollments" ToRole="Students" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorID" />
+    </Key>
+    <Property Name="InstructorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstructorName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorMobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateAssign" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Courses" Relationship="Self.FK__Courses__Instruc__21B6055D" FromRole="Instructors" ToRole="Courses" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentMobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentAddress" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Age" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Enrollments" Relationship="Self.FK__Enrollmen__Stude__0CBAE877" FromRole="Students" ToRole="Enrollments" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__coursefee__Cours__33D4B598">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="coursefees" Type="Self.coursefee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="coursefees">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courses__Instruc__21B6055D">
+    <End Role="Instructors" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructors">
+        <PropertyRef Name="InstructorID" />
+      </Principal>
+      <Dependent Role="Courses">
+        <PropertyRef Name="InstructorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__coursetim__Cours__2F10007B">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="coursetime" Type="Self.coursetime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="coursetime">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enrollmen__Cours__0DAF0CB0">
+    <End Role="Courses" Type="Self.Cours" Multiplicity="0..1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Courses">
+        <PropertyRef Name="CourseID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="CourseID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enrollmen__Stude__0CBAE877">
+    <End Role="Students" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Enrollments">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OmicronUniversityEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="coursefees" EntityType="Self.coursefee" />
+    <EntitySet Name="Courses" EntityType="Self.Cours" />
+    <EntitySet Name="coursetimes" EntityType="Self.coursetime" />
+    <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK__coursefee__Cours__33D4B598" Association="Self.FK__coursefee__Cours__33D4B598">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="coursefees" EntitySet="coursefees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courses__Instruc__21B6055D" Association="Self.FK__Courses__Instruc__21B6055D">
+      <End Role="Instructors" EntitySet="Instructors" />
+      <End Role="Courses" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__coursetim__Cours__2F10007B" Association="Self.FK__coursetim__Cours__2F10007B">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="coursetime" EntitySet="coursetimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enrollmen__Cours__0DAF0CB0" Association="Self.FK__Enrollmen__Cours__0DAF0CB0">
+      <End Role="Courses" EntitySet="Courses" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enrollmen__Stude__0CBAE877" Association="Self.FK__Enrollmen__Stude__0CBAE877">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="Enrollments" EntitySet="Enrollments" />
+    </AssociationSet>
+    <FunctionImport Name="Add_Student">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="delete_registered">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Delete_Student">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_All_Registred" ReturnType="Collection(OmicronUniversityModel.Get_All_Registred_Result)" />
+    <FunctionImport Name="Get_All_Student" ReturnType="Collection(OmicronUniversityModel.Get_All_Student_Result)" />
+    <FunctionImport Name="Get_One_Student" ReturnType="Collection(OmicronUniversityModel.Get_One_Student_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="registeration">
+      <Parameter Name="StudentID" Mode="In" Type="Int32" />
+      <Parameter Name="CourseID" Mode="In" Type="Int32" />
+      <Parameter Name="RegisterDate" Mode="In" Type="String" />
+      <Parameter Name="StudentFees" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(OmicronUniversityModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(OmicronUniversityModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="update_registered">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="StudentID" Mode="In" Type="Int32" />
+      <Parameter Name="CourseID" Mode="In" Type="Int32" />
+      <Parameter Name="RegisterDate" Mode="In" Type="String" />
+      <Parameter Name="StudentFees" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="Update_Student">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Mobile" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="Birthday" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Get_One_Registered" ReturnType="Collection(OmicronUniversityModel.Get_One_Registered_Result)">
+      <Parameter Name="reg_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Get_single_Registered" ReturnType="Collection(OmicronUniversityModel.Get_single_Registered_Result)">
+      <Parameter Name="reg_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="Get_All_Registred_Result">
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="200" />
+    <Property Type="Decimal" Name="StudentFees" Nullable="true" Precision="19" />
+    <Property Type="String" Name="RegisterDate" Nullable="true" MaxLength="40" />
+    <Property Type="Int32" Name="CourseID" Nullable="true" />
+    <Property Type="String" Name="CourseName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="Get_All_Student_Result">
+    <Property Type="Int32" Name="StudentID" Nullable="false" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="StudentEmail" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="StudentMobile" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="StudentAddress" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="Birthday" Nullable="true" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_One_Student_Result">
+    <Property Type="Int32" Name="StudentID" Nullable="false" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="StudentEmail" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="StudentMobile" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="StudentAddress" Nullable="false" MaxLength="200" />
+    <Property Type="DateTime" Name="Birthday" Nullable="true" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Get_One_Registered_Result">
+    <Property Type="Int32" Name="StudentID" Nullable="false" />
+    <Property Type="String" Name="StudentName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="StudentEmail" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="StudentMobile" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="StudentAddress" Nullable="true" MaxLength="25" />
+    <Property Type="DateTime" Name="Birthday" Nullable="true" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Get_single_Registered_Result">
+    <Property Type="Int32" Name="EnrollmentID" Nullable="false" />
+    <Property Type="Int32" Name="StudentID" Nullable="true" />
+    <Property Type="Int32" Name="CourseID" Nullable="true" />
+    <Property Type="Double" Name="StudentFees" Nullable="true" />
+    <Property Type="String" Name="RegisterDate" Nullable="true" MaxLength="40" />
+  </ComplexType>
+</Schema>
